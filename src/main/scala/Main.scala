@@ -9,7 +9,8 @@ object Main {
 
   def main(args: Array[String]): Unit = {
     val reportService = new SensorReportService()
-    reportService.generateReport("reports")
+    val path = args.headOption.getOrElse("reports")
+    reportService.generateReport(path)
       .andThen {
         case Success(report) =>
           println(report.toFormattedSting)
